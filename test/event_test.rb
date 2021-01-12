@@ -3,10 +3,10 @@ require_relative 'test_helper'
 class EventTest < Minitest::Test
 
   def setup
-    @e = Event.new("Moondog")
-    @f = FoodTruck.new("Sunfisher")
-    @f2 = FoodTruck.new("Ba-Nom-a-Nom")
-    @f3 = FoodTruck.new("Palisade Peach Shack")
+    @e     = Event.new("Moondog")
+    @f     = FoodTruck.new("Sunfisher")
+    @f2    = FoodTruck.new("Ba-Nom-a-Nom")
+    @f3    = FoodTruck.new("Palisade Peach Shack")
     @item1 = Item.new({name: 'Peach Pie (Slice)', price: "$3.75"})
     @item2 = Item.new({name: 'Apple Pie (Slice)', price: '$2.50'})
     @item3 = Item.new({name: "Peach-Raspberry Nice Cream", price: "$5.30"})
