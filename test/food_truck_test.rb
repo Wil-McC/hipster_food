@@ -27,5 +27,6 @@ class FoodTruckTest < Minitest::Test
     @f.stock(@item2, 12)
     assert_equal 55, @f.check_stock(@item1)
     assert_equal 12, @f.check_stock(@item2)
+    require "pry"; binding.pry
   end
 end

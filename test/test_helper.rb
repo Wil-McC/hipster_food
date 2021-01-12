@@ -8,3 +8,4 @@ require 'minitest/pride'
 
 require './lib/food_truck'
 require './lib/item'
+require './lib/event'
