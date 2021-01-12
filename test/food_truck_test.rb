@@ -13,4 +13,8 @@ class FoodTruckTest < Minitest::Test
     assert_equal "Sunfisher", @f.name
     assert_equal Hash.new, @f.inventory
   end
+
+  def test_it_check_stock
+    assert_equal 0, @f.check_stock(@item1)
+  end
 end
