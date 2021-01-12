@@ -11,6 +11,8 @@ class EventTest < Minitest::Test
     @item2 = Item.new({name: 'Apple Pie (Slice)', price: '$2.50'})
     @item3 = Item.new({name: "Peach-Raspberry Nice Cream", price: "$5.30"})
     @item4 = Item.new({name: "Banana Nice Cream", price: "$4.25"})
+    @item5 = Item.new({name: "Mango Smoothie", price: "6.00"})
+
 
     @f.stock(@item1, 35)
     @f.stock(@item2, 7)
@@ -18,7 +20,12 @@ class EventTest < Minitest::Test
     @f2.stock(@item3, 25)
     @f3.stock(@item1, 65)
 
-    @expected = {@item1 => {quantity: 100, food_trucks: [@f, @f3]}}
+    @expected = {
+      @item1 => {quantity: 100, food_trucks: [@f, @f3]},
+      @item2 => {quantity: 7, food_trucks: [@f]},
+      @item3 => {quantity: 35, food_trucks: [@f2, @f3]},
+      @item4 => {quantity: 50, food_trucks: [@f2]}
+    }
   end
 
   def test_it_exists_with_attributes
@@ -61,12 +68,41 @@ class EventTest < Minitest::Test
     assert_equal 243.75, @f3.potential_revenue
   end
 
+  def test_in_stock
+    @e.add_food_truck(@f)
+    @e.add_food_truck(@f2)
+    @e.add_food_truck(@f3)
+    assert_equal false, @e.in_stock(@item5)
+    assert_equal true, @e.in_stock(@item4)
+  end
+
+  def test_all_items_sold
+    @e.add_food_truck(@f)
+    @e.add_food_truck(@f2)
+    @e.add_food_truck(@f3)
+    assert_equal [@item1, @item2, @item4, @item3], @e.all_items_sold
+  end
+
   def test_total_inventory
     @f3.stock(@item3, 10)
     @e.add_food_truck(@f)
     @e.add_food_truck(@f2)
     @e.add_food_truck(@f3)
-
     assert_equal @expected, @e.total_inventory
+  end
+
+  def test_overstocked_items
+    @e.add_food_truck(@f)
+    @e.add_food_truck(@f2)
+    @e.add_food_truck(@f3)
+    assert_equal [@item1], @e.overstocked_items
+  end
+
+  def test_sorted_item_list
+    expected_arr = ["Apple Pie (Slice)", "Banana Nice Cream", "Peach Pie (Slice)", "Peach-Raspberry Nice Cream"]
+    @e.add_food_truck(@f)
+    @e.add_food_truck(@f2)
+    @e.add_food_truck(@f3)
+    assert_equal expected_arr, @e.sorted_item_list
   end
 end
