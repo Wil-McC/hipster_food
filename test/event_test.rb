@@ -32,4 +32,12 @@ class EventTest < Minitest::Test
 
     assert_equal [@f, @f2, @f3], @e.food_trucks
   end
+
+  def test_it_returns_truck_names
+    @e.add_food_truck(@f)
+    @e.add_food_truck(@f2)
+    @e.add_food_truck(@f3)
+    
+    assert_equal ["Sunfisher", "Ba-Nom-a-Nom", "Palisade Peach Shack"], @e.food_truck_names
+  end
 end
