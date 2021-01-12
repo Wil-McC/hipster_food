@@ -1,0 +1,27 @@
+{
+  "Unit Tests": {
+    "coverage": {
+      "/Users/wilmcc/Documents/Turing/Workspace/ICs_and_practice/hipster_food/lib/food_truck.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/wilmcc/Documents/Turing/Workspace/ICs_and_practice/hipster_food/lib/item.rb": {
+        "lines": [
+
+        ]
+      }
+    },
+    "timestamp": 1610482063
+  }
+}
